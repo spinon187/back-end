@@ -41,7 +41,7 @@ listRouter.get('/:id/', userRestricted, (req, res) => {
 listRouter.post('/topnine/', restricted, (req, res) => {
     const user = Number(req.params.user_id); 
     const item = {
-        id: req.params.id,
+        id: req.body.id,
         category: req.body.category,
         position: req.body.position
     };
