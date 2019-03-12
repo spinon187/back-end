@@ -49,5 +49,5 @@ exports.up = function(knex, Promise) {
 };
 
 exports.down = function(knex, Promise) {
-    return knex.schema.dropTableIfExists('users').dropTableIfExists('favorites').dropTableIfExists('items');
+    return knex.schema.dropTableIfExists('users').dropTableIfExists('favorites').dropTableIfExists('items').dropTableIfExists("categories");
 };
