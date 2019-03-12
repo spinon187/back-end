@@ -23,25 +23,19 @@ exports.up = function(knex, Promise) {
         tbl.string('name')
             .unique()
             .notNullable();
-        tbl.integer('category')
+        tbl.integer('category_id')
             .references('id')
             .inTable('categories')
             .notNullable();      
     })
     .createTable('favorites', function(tbl){
         tbl.increments('id');
-        tbl.integer('category')
-            .references('category')
-            .inTable('items')
-            .notNullable();
-        tbl.integer('user')
+        tbl.integer('user_id')
             .references('id')
             .inTable('users')
             .onDelete('CASCADE')
             .notNullable();
-        tbl.integer('item')
-            .references('id')
-            .inTable('items')
+        tbl.string('name')
             .notNullable();
         tbl.integer('position')
             .notNullable();
