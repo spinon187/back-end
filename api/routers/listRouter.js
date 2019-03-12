@@ -81,7 +81,7 @@ listRouter.put('/topnine/:id/', userRestricted, (req, res) => {
         .catch(err => res.status(500).send(err));
 })
 
-listRouter.post('/add/:id/', userRestricted, (req, res) => {
+listRouter.post('/add/', userRestricted, (req, res) => {
     const data = {
         name: req.body.name,
         category: req.body.category,
