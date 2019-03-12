@@ -8,7 +8,7 @@ const listRouter = require('./listRouter.js');
 const jwt = require('jsonwebtoken');
 
 const userRouter = express.Router();
-userRouter.use(`/users/:ownerID`, listRouter);
+userRouter.use(`/users/:user_id`, listRouter);
 
 const secret = process.env.TOKEN_SECRET || 'idk lol';
 

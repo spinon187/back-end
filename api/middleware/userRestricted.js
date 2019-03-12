@@ -8,7 +8,7 @@ function userRestricted(req, res, next) {
 
     if (token) {
         jwt.verify(token, secret, (err, decodedToken) => {
-            if (decodedToken.id === Number(req.params.ownerID)){
+            if (decodedToken.id === Number(req.params.user_id)){
                 req.decodedJwt = decodedToken;
                 next();
             }
