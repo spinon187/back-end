@@ -4,6 +4,7 @@ module.exports = {
     getItemListAll,
     getListItemByID,
     getTopNine,
+    getFavById,
     insertItem,
     insertFav,
     updateItem,
@@ -23,7 +24,11 @@ function getListItemByID(id) {
 }
 
 function getTopNine(id){
-    return db('favorites').where({ id: Number(id) })
+    return db('favorites').where({ user: Number(id) })
+}
+
+function getFavById(id){
+    return db('favorites').where({ id: Number(id) }).first();
 }
   
 function insertItem(item) {
