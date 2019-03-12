@@ -12,13 +12,22 @@ exports.up = function(knex, Promise) {
             .notNullable();
 
     })
+    .createTable('categories', function(tbl){
+        tbl.increments('id');
+        tbl.string('name')
+            .unique()
+            .notNullable();
+    })
     .createTable('favorites', function(tbl){
         tbl.increments('id');
-        tbl.string('category')
+        tbl.integer('category')
+            .references('category')
+            .inTable('items')
             .notNullable();
         tbl.integer('user')
             .references('id')
             .inTable('users')
+            .onDelete('CASCADE')
             .notNullable();
         tbl.integer('item')
             .references('id')
@@ -30,14 +39,12 @@ exports.up = function(knex, Promise) {
     .createTable('items', function(tbl){
         tbl.increments('id');
         tbl.string('name')
+            .unique()
             .notNullable();
-        tbl.string('category')
-            .notNullable();
-        tbl.specificType('users', 'INT[]')
+        tbl.integer('category')
             .references('id')
-            .inTable('users')
-            .notNullable();
-        
+            .inTable('categories')
+            .notNullable();      
     })
 
 };
