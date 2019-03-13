@@ -9,7 +9,10 @@
 | `GET /api/users/:user_id` | Returns only the specified user |
 | `PUT /api/users/:user_id` | Updates username and password |
 | `DELETE /api/users/:user_id` | Deletes the specified user |
+| Category Database Endpoints |
+| `GET api/categories` | Returns all categories | 
 | Item Database Endpoints |
+| `GET /api/categories/:category_id/items` | Returns a list of all available items in a category|
 | `GET /api/users/:user_id/all` | Returns a list of all available items in the item database |
 | `POST api/users/:user_id/add` | Expects an object with a name(string) and category(string), and adds it to the items database |
 | `GET /api/users/:user_id/:item_id` | Returns an item with the specified id number |

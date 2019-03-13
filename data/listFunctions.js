@@ -23,8 +23,8 @@ function getListItemByID(id) {
     return db('items').where({ id: Number(id) }).first();
 }
 
-function getTopNine(id){
-    return db('favorites').where({ user: Number(id) })
+function getTopNine(user_id){
+    return db('favorites').where({ user_id: Number(user_id) })
 }
 
 function getFavById(id){
@@ -37,15 +37,14 @@ function insertItem(item) {
       .then(ids => ({ id: ids[0] }));
 }
 
-function insertFav(id, item) {
+function insertFav(user, item) {
     return db('favorites')
         .insert({
-            user: id,
-            category: item.category,
-            item: item.id,
+            user_id: user.id,
+            name: item.name,
             position: item.position
         })
-        .then(ids => ({ id: ids[0] }));
+        .then(ids => {({ id: ids[0] })});
 }
   
 function updateItem(id, item) {
@@ -60,12 +59,11 @@ function updateItem(id, item) {
       .update(item);
 }
 
-function updateFav(id, user, item) {
+function updateFav(id, user, item, position) {
     const updated = {
-        user: user,
-        category: item.category,
-        item: item.id,
-        position: item.position
+        user_id: user.id,
+        name: item.name,
+        position: position
     }
     
     return db('favorites')

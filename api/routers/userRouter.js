@@ -20,7 +20,7 @@ function generateToken(user){
     };
 
     const options = {
-        expiresIn: '1h'
+        expiresIn: '24h'
     }
 
     return jwt.sign(payload, secret, options)
@@ -72,7 +72,7 @@ userRouter.get('/users', restricted, (req, res) => {
 userRouter.get('/users/:id', restricted, (req, res) => {
     const id = req.params.id;
 
-    db.getUserByName(id)
+    db.getUserByID(id)
         .then(user => {
             res.status(200).json(user);
         })
