@@ -13,6 +13,7 @@
 | `GET api/categories` | Returns all categories | 
 | Item Database Endpoints |
 | `GET /api/categories/:category_id/items` | Returns a list of all available items in a category|
+| `POST /api/categories/:category_id/items` | Expects an object with a name(string) and adds it to the items database |
 | `GET /api/users/:user_id/all` | Returns a list of all available items in the item database |
 | `POST api/users/:user_id/add` | Expects an object with a name(string) and category(string), and adds it to the items database |
 | `GET /api/users/:user_id/:item_id` | Returns an item with the specified id number |
@@ -20,6 +21,6 @@
 | `DELETE /api/users/:user_id/delete/:item_id` | Deletes an item with the specified id from the items database |
 | Top 9 Database Endpoints |
 | `GET /api/users/:user_id/topnine` | Returns a list of the specified user's Top 9 items |
-| `POST /api/users/:user_id/topnine` | Expects an object with id(integer), category(string), and position(integer) properties and adds it to the user's Top 9 |
+| `POST /api/users/:user_id/topnine` | Expects an object with id(integer) and position(integer) properties and adds it to the user's Top 9 |
 | `PUT /api/users/:user_id/topnine/:id` | Expects an object with id(integer), category(string), and position(integer) properties and updates an entry already in the user's Top 9|
 | `DELETE /api/users/:user_id/topnine/:id` | Deletes an item with the specified id from the user's Top 9 |

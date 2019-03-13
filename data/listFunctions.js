@@ -37,12 +37,12 @@ function insertItem(item) {
       .then(ids => ({ id: ids[0] }));
 }
 
-function insertFav(user, item) {
+function insertFav(user_id, favorite) {
     return db('favorites')
         .insert({
-            user_id: user.id,
-            name: item.name,
-            position: item.position
+            user_id: user_id,
+            name: favorite.name,
+            position: favorite.position
         })
         .then(ids => {({ id: ids[0] })});
 }
@@ -59,11 +59,11 @@ function updateItem(id, item) {
       .update(item);
 }
 
-function updateFav(id, user, item, position) {
+function updateFav(id, user, favorite) {
     const updated = {
         user_id: user.id,
-        name: item.name,
-        position: position
+        name: favorite.name,
+        position: favorite.position
     }
     
     return db('favorites')

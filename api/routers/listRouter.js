@@ -39,18 +39,17 @@ listRouter.get('/:id/', userRestricted, (req, res) => {
 });
 
 listRouter.post('/topnine/', restricted, (req, res) => {
-    const user = Number(req.params.user_id); 
-    const item = {
-        id: req.body.id,
-        category: req.body.category,
-        position: req.body.position
+    const user_id = Number(req.params.user_id); 
+    const favorite = {
+        position: req.body.position,
+        name: req.body.name,
     };
-    console.log(user);
-    console.log(item);
-    db.insertFav(user, item)
-        .then(updated => {
-            console.log(updated);
-            res.status(201).json(updated);
+    console.log(user_id);
+    console.log(favorite);
+    db.insertFav(user_id, favorite)
+        .then(favorite => {
+            console.log(favorite);
+            res.status(201).json(favorite);
         })
         .catch(err => res.status(500).send(err));
 })
@@ -71,7 +70,6 @@ listRouter.put('/topnine/:id/', userRestricted, (req, res) => {
     const item = {
         user: user,
         item: req.body.id,
-        category: req.body.category,
         position: req.body.position
     };
     db.updateFav(id, user, item)
@@ -105,6 +103,7 @@ listRouter.delete('/delete/:id/', userRestricted, (req, res) => {
 })
 
 listRouter.delete('/topnine/:id', userRestricted, (req, res) => {
+    console.log(req.params.id)
     const id = req.params.id;
     db.removeFav(id)
         .then(deleted => {
