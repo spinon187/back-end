@@ -1,5 +1,12 @@
 // Update with your config settings.
 
+const pg = {
+  host: 'localhost',
+  database: 'topnine',
+  user: 'filler',
+  password: 'morefiller'
+}
+
 module.exports = {
 
   development: {
@@ -33,19 +40,14 @@ module.exports = {
   // },
 
   production: {
-    client: 'postgresql',
-    connection: {
-      database: 'my_db',
-      user:     'username',
-      password: 'password'
-    },
-    pool: {
-      min: 2,
-      max: 10
-    },
+    client: 'pg',
+    connection: pg,
     migrations: {
-      tableName: 'knex_migrations'
-    }
+      directory: './data/migrations',
+    },
+    seeds: {
+      directory: './data/seeds',
+    },
   }
 
 };
