@@ -3,9 +3,10 @@
 module.exports = {
 
   development: {
-    client: 'sqlite3',
+    client: 'pg',
     connection: {
-      filename: './data/topnine.sqlite3'
+      host: 'localhost',
+      database: 'mytopnine'
     },
     useNullAsDefault: true,
     migrations: {
