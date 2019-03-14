@@ -31,7 +31,7 @@ function getTopNine(id){
         .join('categories', function(){
             this.on('items.category', '=', 'categories.id')})
         .join('items', function(){
-            this.on('favorites.item', '=', 'favorites.id')
+            this.on('favorites.item', '=', 'items.id')
         })
         .where({ user: Number(id) })
 

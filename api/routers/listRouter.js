@@ -5,7 +5,6 @@ const users = require('../../data/userFunctions.js');
 const db = require('../../data/listFunctions.js');
 const restricted = require('../middleware/restricted.js');
 const userRestricted = require('../middleware/userRestricted.js');
-const switchx = require('../../data/dbConfig');
 
 const listRouter = express.Router({mergeParams: true});
 
