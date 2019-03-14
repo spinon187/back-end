@@ -5,6 +5,7 @@ const users = require('../../data/userFunctions.js');
 const db = require('../../data/listFunctions.js');
 const restricted = require('../middleware/restricted.js');
 const userRestricted = require('../middleware/userRestricted.js');
+const switchx = require('../../data/dbConfig');
 
 const listRouter = express.Router({mergeParams: true});
 
@@ -39,10 +40,22 @@ listRouter.get('/:id/', userRestricted, (req, res) => {
 });
 
 listRouter.post('/topnine/', restricted, (req, res) => {
-    const user = Number(req.params.user_id); 
+    const user = Number(req.params.user_id);
+    let cat = null;
+    if(req.body.category === "Movies"){
+        cat = 1
+    }
+    else if(req.body.category === 'Video Games'){
+        cat = 2
+    }
+    else if(req.body.category === 'Music'){
+        cat = 3
+    }
+
+    console.log(nameToId);
     const item = {
         id: req.body.id,
-        category: req.body.category,
+        category: cat,
         position: req.body.position
     };
     console.log(user);

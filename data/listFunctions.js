@@ -26,7 +26,16 @@ function getListItemByID(id) {
 }
 
 function getTopNine(id){
-    return db('favorites').where({ user: Number(id) })
+    const x = db.select('favorites.id', 'categories.cat_name AS category', 'items.name AS item', 'favorites.position')
+        .from('favorites')
+        .join('categories', function(){
+            this.on('items.category', '=', 'categories.id')})
+        .join('items', function(){
+            this.on('favorites.item', '=', 'favorites.id')
+        })
+        .where({ user: Number(id) })
+
+    return x
 }
 
 function getFavById(id){
