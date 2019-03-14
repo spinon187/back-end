@@ -16,7 +16,9 @@ module.exports = {
   
  
 function getItemListAll() {
-    return db('items');
+    const x = db.select("items.id", 'items.name', 'categories.cat_name AS category').from('items').join('categories', function(){
+        this.on('items.category', '=', 'categories.id')});
+    return x;
 }
 
 function getListItemByID(id) {

@@ -14,7 +14,9 @@ exports.up = function(knex, Promise) {
     })
     .createTable('favorites', function(tbl){
         tbl.increments('id');
-        tbl.string('category')
+        tbl.integer('category')
+            .references('category')
+            .inTable('items')
             .notNullable();
         tbl.integer('user')
             .references('id')
@@ -30,18 +32,22 @@ exports.up = function(knex, Promise) {
     .createTable('items', function(tbl){
         tbl.increments('id');
         tbl.string('name')
+            .unique()
             .notNullable();
-        tbl.string('category')
-            .notNullable();
-        tbl.specificType('users', 'INT[]')
+        tbl.integer('category')
             .references('id')
-            .inTable('users')
+            .inTable('categories')
+            .notNullable();      
+    })
+    .createTable('categories', function(tbl){
+        tbl.increments('id');
+        tbl.string('cat_name')
+            .unique()
             .notNullable();
-        
     })
 
 };
 
 exports.down = function(knex, Promise) {
-    return knex.schema.dropTableIfExists('users').dropTableIfExists('favorites').dropTableIfExists('items');
+    return knex.schema.dropTableIfExists('users').dropTableIfExists('favorites').dropTableIfExists('items').dropTableIfExists('categories');
 };
