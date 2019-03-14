@@ -3,6 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const db = require('../../data/userFunctions.js');
+const guest = require('../../data/listFunctions.js');
 const restricted = require('../middleware/restricted.js');
 const listRouter = require('./listRouter.js');
 const jwt = require('jsonwebtoken');
@@ -105,6 +106,14 @@ userRouter.delete('/users/:id', restricted, (req, res) => {
             res.status(200).json(deleted);
         })
         .catch(err => res.status(500).send(err));
+})
+
+userRouter.get('/guest/', (req, res) => {
+    guest.getItemListAll()
+        .then(list => {
+            res.status(200).json(list);
+        })
+        .catch(err => res.status(500).json(err));
 })
 
 module.exports = userRouter;
