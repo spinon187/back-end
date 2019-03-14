@@ -51,7 +51,6 @@ listRouter.post('/topnine/', restricted, (req, res) => {
         cat = 3
     }
 
-    console.log(nameToId);
     const item = {
         id: req.body.id,
         category: cat,
